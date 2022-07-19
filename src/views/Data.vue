@@ -81,10 +81,18 @@ watch(() => currentBillDate.value, () => setOption(option))
       <div class="head">
         <span class="title">收支构成</span>
         <div class="tab">
-          <span class="expense" :class="[payType == 'expense' && 'active']" @click="payType = 'expense'">
+          <span
+            class="expense"
+            :class="[payType == 'expense' && 'active']"
+            @click="payType = 'expense'"
+          >
             支出
           </span>
-          <span class="income" :class="[payType == 'income' && 'active']" @click="payType = 'income'">
+          <span
+            class="income"
+            :class="[payType == 'income' && 'active']"
+            @click="payType = 'income'"
+          >
             收入
           </span>
         </div>
@@ -98,8 +106,13 @@ watch(() => currentBillDate.value, () => setOption(option))
           <div class="progress">
             {{ `${getProgress(item.sum).toFixed(2)}%` }}
           </div>
-          <VanProgress class="percent" :percentage="getProgress(item.sum)" stroke-width="6px" :show-pivot="false"
-            track-color="#ffffff" color="#39be77" />
+          <VanProgress
+            class="percent"
+            :percentage="getProgress(item.sum)"
+            stroke-width="6px"
+            :show-pivot="false"
+            track-color="#ffffff" color="#39be77"
+          />
           <div class="money">¥{{ Math.abs(item.sum).toFixed(2) }}</div>
         </div>
       </div>

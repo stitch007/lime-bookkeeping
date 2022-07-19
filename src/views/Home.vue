@@ -78,6 +78,7 @@ const monthlyBill = $computed(() => {
     </main>
     <div class="add" @click="popupAddRef?.toggle()">
       <VanIcon name="records" />
+      <span>记一笔</span>
     </div>
     <PopupType ref="popupTypeRef" @select="onPopupTypeSelect" />
     <PopupMonth ref="popupMonthRef" @select="onPopupMonthSelect" />
@@ -142,19 +143,26 @@ const monthlyBill = $computed(() => {
 
 .add {
   position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  bottom: 80px;
+  right: 20px;
+  padding: 8px 12px;
+  border-radius: 20px;
   border: 1px solid #e9e9e9;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   color: var(--primary);
+  font-weight: bold;
+}
+
+.add > :nth-child(1) {
+  font-size: 20px;
+}
+
+.add > span {
+  font-size: 14px;
 }
 
 .content {
