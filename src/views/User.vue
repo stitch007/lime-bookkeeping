@@ -1,5 +1,21 @@
 <script setup lang="ts">
+import { useExport } from '@/composables'
+import { useAppStore } from '@/stores'
+import dayjs from 'dayjs';
 
+const app = useAppStore()
+
+const exportBills = $computed(() => {
+  return app.bills.map(bill => ({
+    id: bill.id,
+    '类型': app.types.find(type => type.id === bill.typeId)?.name ?? '未知类型',
+    '金额': bill.amount,
+    '备注': bill.note,
+    '账单创建时间': dayjs(bill.createAt).format('YYYY-MM-DD HH:mm:ss'),
+  }))
+})
+
+const { exportToExcel, exportToCSV, exportToJSON } = useExport('账单')
 </script>
 
 <template>
@@ -9,6 +25,11 @@
       <div class="info">
         <div class="name">青柠记账</div>
       </div>
+    </div>
+    <div class="content">
+      <VanCell @click="exportToExcel(exportBills)" is-link>💣 导出账单为excel</VanCell>
+      <VanCell @click="exportToCSV(exportBills)" is-link>🧨 导出账单为csv</VanCell>
+      <VanCell @click="exportToJSON(exportBills)" is-link>🔥 导出账单为json</VanCell>
     </div>
   </div>
 </template>
